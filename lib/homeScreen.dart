@@ -14,11 +14,13 @@ class _HomePageState extends State<HomePage> {
   bool lan3 = false;
   bool lan4 = false;
   String gen = "Male";
+  RangeValues rangev1 = RangeValues(100, 500);
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      backgroundColor: Colors.grey.shade400,
       appBar: AppBar(
         title: Text(
           "My Resume",
@@ -179,7 +181,24 @@ class _HomePageState extends State<HomePage> {
                 });
               },
               title: Text("Other"),
-            )
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text("${rangev1.start.toInt()}/${rangev1.end.toInt()}"),
+            RangeSlider(
+                values: rangev1,
+                max: 1000,
+                divisions: 10,
+                labels: RangeLabels(
+                  rangev1.start.round().toString(),
+                  rangev1.end.round().toString(),
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    rangev1 = value!;
+                  });
+                })
           ],
         ),
       ),
